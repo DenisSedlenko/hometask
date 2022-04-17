@@ -1,0 +1,31 @@
+<form nz-form [formGroup]="form!">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired nzFor="first">Имя</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="Поле обязательное">
+      <input id="first" type="text" nz-input formControlName="first" placeholder="Введите имя"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzFor="last" nzRequired>Фамилия</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="Поле обязательное">
+      <input id="last" type="text" nz-input formControlName="last" placeholder="Введите фамилию"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzFor="age" nzRequired>Возраст</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzErrorTip="Поле обязательное">
+      <nz-input-number
+        id="age"
+        [nzMin]="0"
+        [nzMax]="200"
+        [nzStep]="1"
+        formControlName="age"
+        placeholder="Введите ваш возраст">
+      </nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="cancel()">Отмена</button>
+  <button nz-button nzType="primary" [disabled]="form?.invalid" (click)="save()">{{ saveButtonLabel }}</button>
+</div>

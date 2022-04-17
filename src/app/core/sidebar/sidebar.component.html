@@ -1,0 +1,12 @@
+<nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="collapsed.next($event)">
+  <div class="logo">
+    <i nz-icon nzType="aliyun"></i>
+    <span [ngClass]="{'hidden': collapsed | async }">Aliyun</span>
+  </div>
+  <ul nz-menu nzMode="inline">
+    <li *ngFor="let menu of navigation" nz-menu-item [routerLink]="menu.url" nzMatchRouter>
+      <i *ngIf="menu.icon" nz-icon [nzType]="menu.icon"></i>
+      <span>{{ menu.name }}</span>
+    </li>
+  </ul>
+</nz-sider>

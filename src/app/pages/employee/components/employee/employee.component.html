@@ -1,0 +1,43 @@
+<nz-space class="employee" nzSize="large" nzDirection="vertical">
+  <h1 *nzSpaceItem>Список сотрудников</h1>
+
+  <button *nzSpaceItem nz-button nzType="primary" (click)="createEmployee()">
+    <span>Добавить сотрудника</span>
+  </button>
+
+  <ng-container *ngIf="employees$ | async as employees">
+    <nz-table *nzSpaceItem #employeesRef [nzData]="employees">
+      <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employeesRef.data; trackBy: trackByFn">
+        <td>
+          {{ [employee.name.first, employee.name.last] | shortName }}
+           -
+          <a href="mailto: {{ employee.email }}">{{ employee.email }}</a>
+        </td>
+        <td>
+          <img class="photo" src="assets/images/no_photo.png">
+        </td>
+        <td>{{ employee.name.first }}</td>
+        <td>{{ employee.name.last }}</td>
+        <td>{{ employee.age }}</td>
+        <td>
+          <a nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+            <i class="vertical" nz-icon nzType="ellipsis"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="update(employee)">Редактировать</li>
+              <li nz-menu-item (click)="delete(employee)">Удалить</li>
+            </ul>
+          </nz-dropdown-menu>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+</nz-space>

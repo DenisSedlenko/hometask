@@ -1,0 +1,15 @@
+@import "colors";
+@import "variables";
+
+:host {
+  display: contents;
+
+  nz-header {
+    padding: @header-padding;
+    background-color: @white;
+    position: sticky;
+    top: 0;
+    z-index: @header-sticky-zindex;
+  }
+}
+
